@@ -149,4 +149,8 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         remoteVideoMutedIndicator.isHidden = !muted
     }
     
+    func rtcEngine(_ engine: AgoraRtcEngineKit, networkQuality uid:UInt, txQuality:AgoraNetworkQuality, rxQuality:AgoraNetworkQuality) {
+        print("txQuality: \(txQuality.rawValue)")
+        print("rxQuality: \(rxQuality.rawValue)")
+    }
 }
