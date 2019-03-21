@@ -58,6 +58,9 @@ class VideoChatViewController: UIViewController {
     
     func joinChannel() {
         agoraKit.setDefaultAudioRouteToSpeakerphone(true)
+        agoraKit.enableWebSdkInteroperability(true)
+        agoraKit.setChannelProfile(AgoraChannelProfile.liveBroadcasting)
+        agoraKit.setClientRole(AgoraClientRole.broadcaster)
         agoraKit.joinChannel(byToken: nil, channelId: "demoChannel1", info:nil, uid:0) {(sid, uid, elapsed) -> Void in
             // Did join channel "demoChannel1"
         }
@@ -148,7 +151,7 @@ extension VideoChatViewController: AgoraRtcEngineDelegate {
         remoteVideo.isHidden = muted
         remoteVideoMutedIndicator.isHidden = !muted
     }
-    
+
     func rtcEngine(_ engine: AgoraRtcEngineKit, networkQuality uid:UInt, txQuality:AgoraNetworkQuality, rxQuality:AgoraNetworkQuality) {
         print("txQuality: \(txQuality.rawValue)")
         print("rxQuality: \(rxQuality.rawValue)")
